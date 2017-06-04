@@ -1,0 +1,12 @@
+version: '3'
+services:
+  server:
+    build: .
+    command: yarn start
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+      - /app/src/node_modules
