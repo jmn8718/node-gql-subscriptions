@@ -29,6 +29,16 @@ const typeDefs = `
     devicesByLocation(location: LocationInput!, distance: Float): [Device]
     devicesByBox(box: BoxInput): [Device]
   }
+
+  type Mutation {
+    createDevice(name: String! location: LocationInput!): Device
+    updateDeviceLocation(id: ID!, location: LocationInput!): Device
+  }
+
+  type Root {
+    query: Query
+    mutation: Mutation
+  }
 `;
 
 export default typeDefs;
