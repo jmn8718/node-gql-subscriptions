@@ -32,7 +32,7 @@ export default (app) => {
     const bind = typeof addr === 'string'
       ? `pipe ${addr}`
       : `port ${addr.port}`
-    console.log(`Listening on port ${bind}`);
+    console.log(`Listening on ${bind}`);
   });
 
   return server;
