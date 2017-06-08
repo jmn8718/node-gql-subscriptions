@@ -35,9 +35,15 @@ const typeDefs = `
     updateDeviceLocation(id: ID!, location: LocationInput!): Device
   }
 
+  type Subscription {
+    watchDevice(id: ID!): Device
+    watchDevices: Device
+  }
+
   type Root {
     query: Query
     mutation: Mutation
+    subscription: Subscription
   }
 `;
 

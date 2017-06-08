@@ -1,4 +1,7 @@
 import faker from 'faker';
+import { withFilter } from 'graphql-subscriptions';
+
+import { pubsub } from '../config/pubsub';
 
 const devices = [];
 
@@ -36,15 +39,33 @@ const resolvers = {
         location: args.location,
       };
       devices.push(newDevice);
+      console.log('n', newDevice)
+      pubsub.publish('newDevice', newDevice);
       return newDevice;
     },
     updateDeviceLocation: (root, args) => {
-      devices.splice(args.id, 1, {
+      const updatedDevice = {
         id: args.id,
         name: devices[args.id].name,
         location: args.location,
-      });
-      return devices[args.id];
+      };
+      devices.splice(args.id, 1, updatedDevice);
+      pubsub.publish('updateDeviceLocation', updatedDevice);
+      return updatedDevice;
+    },
+  },
+  Subscription: {
+    watchDevice: {
+      resolve: (payload) => payload,
+      subscribe: withFilter(() => pubsub.asyncIterator('updateDeviceLocation'), (payload, args) => {
+        console.log('---------P', payload)
+        console.log('---------A', args)
+        return payload.id === args.id;
+      }),
+    },
+    watchDevices: {
+      resolve: (payload) => payload,
+      subscribe: () => pubsub.asyncIterator(['updateDeviceLocation', 'newDevice']),
     },
   },
 };
