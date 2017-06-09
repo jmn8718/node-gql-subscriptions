@@ -1,4 +1,8 @@
+import devices from '../modules/devices';
+
 export default (app) => {
+  app.use('/devices', devices);
+
   app.get('/', (req, res) => {
     res.json({
       status: 200

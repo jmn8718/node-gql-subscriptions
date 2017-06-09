@@ -20,7 +20,8 @@ const typeDefs = `
   type Device {
     id: ID!
     name: String
-    location: Location
+    currentLocation: Location
+    previousLocation: Location    
   }
 
   type Query {
