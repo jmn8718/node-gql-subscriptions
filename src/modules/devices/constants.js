@@ -1,0 +1,2 @@
+export const CREATE_DEVICE = 'CREATE_DEVICE';
+export const UPDATE_DEVICE = 'UPDATE_DEVICE';

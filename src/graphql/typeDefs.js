@@ -1,4 +1,8 @@
 const typeDefs = `
+  interface MetaSubscription {
+    type: String!
+  }
+
   # The Location scalar type represents a geolocation point.
   type Location {
     # Latitude of the location point
@@ -20,8 +24,15 @@ const typeDefs = `
   type Device {
     id: ID!
     name: String
+    location: Location
+  }
+
+  type DeviceSubscription implements MetaSubscription{
+    type: String!
+    id: ID!
+    name: String
     currentLocation: Location
-    previousLocation: Location    
+    previousLocation: Location
   }
 
   type Query {
@@ -37,8 +48,8 @@ const typeDefs = `
   }
 
   type Subscription {
-    watchDevice(id: ID!): Device
-    watchDevices: Device
+    watchDevice(id: ID!): DeviceSubscription
+    watchDevices: DeviceSubscription
   }
 
   type Root {
