@@ -39,7 +39,6 @@ const resolvers = {
         location: args.location,
       };
       devices.push(newDevice);
-      console.log('n', newDevice)
       pubsub.publish('newDevice', newDevice);
       return newDevice;
     },
@@ -57,11 +56,7 @@ const resolvers = {
   Subscription: {
     watchDevice: {
       resolve: (payload) => payload,
-      subscribe: withFilter(() => pubsub.asyncIterator('updateDeviceLocation'), (payload, args) => {
-        console.log('---------P', payload)
-        console.log('---------A', args)
-        return payload.id === args.id;
-      }),
+      subscribe: withFilter(() => pubsub.asyncIterator('updateDeviceLocation'), (payload, args) => payload.id === args.id),
     },
     watchDevices: {
       resolve: (payload) => payload,
