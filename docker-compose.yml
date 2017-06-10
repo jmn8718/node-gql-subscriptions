@@ -9,13 +9,14 @@ services:
     build: .
     command: yarn start
     ports:
-      - '5000:5000'
-      - '5001:5001'
+      - '3000:3000'
+      - '3001:3001'
     env_file:
       - .env
     volumes:
       - ./src:/app/src
       - ./package.json:/app/package.json
+      - ./yarn.lock:/app/yarn.lock
       - /app/node_modules
     depends_on:
       - mongo
