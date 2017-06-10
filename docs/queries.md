@@ -1,7 +1,12 @@
 # queries
 
 ## devices
+This query shows all the devices in the database.
+It accepts 2 parameters:
+- limit (Int): to limit the number of elements to display.
+- skip (Int): X first elements to skip in the results.
 
+### query
 ```
 query GetDevices($limit: Int $skip: Int) {
   devices(limit: $limit skip: $skip) {
@@ -15,14 +20,14 @@ query GetDevices($limit: Int $skip: Int) {
   }
 }
 ```
-
+### varaibles
 ```js
 {
   "skip": 0,
   "limit": 2
 }
 ```
-
+### response
 ```js
 {
   "data": {
@@ -51,6 +56,8 @@ query GetDevices($limit: Int $skip: Int) {
 ```
 
 ## device
+This query show the requested element.
+### query
 ```
 query GetDevice($id: ID!) {
   device(id: $id) {
@@ -64,13 +71,13 @@ query GetDevice($id: ID!) {
   }
 }
 ```
-
+### variables
 ```js
 {
   "id": "593bc4b0dd514803019eeeca"
 }
 ```
-
+### response
 ```js
 {
   "data": {

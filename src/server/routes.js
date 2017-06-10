@@ -1,11 +1,15 @@
 import devices from '../modules/devices';
 
 export default (app) => {
-  app.use('/devices', devices);
+  app.use('/api/v1/devices', devices);
 
   app.get('/', (req, res) => {
     res.json({
-      status: 200
+      name: process.env.NAME,
+      environment: process.env.NODE_ENV,
+      resources: [
+        '/api/v1/device',
+      ],
     });
   });
 

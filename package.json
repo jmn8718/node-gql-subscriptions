@@ -1,7 +1,8 @@
 {
-  "name": "graphql-subscriptions",
-  "version": "0.0.0",
-  "private": true,
+  "name": "node-gql-subscriptions",
+  "description": "Graphql server with apollo server and subscriptions",
+  "version": "0.0.1",
+  "author": "Jose Miguel Navarro <jmn8718@gmail.com>",
   "scripts": {
     "start": "nodemon -w src --exec \"babel-node src/index.js\"",
     "build": "babel src -s -D -d dist"
