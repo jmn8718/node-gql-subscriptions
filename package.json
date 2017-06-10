@@ -12,7 +12,6 @@
     "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
     "express": "~4.15.2",
-    "faker": "^4.1.0",
     "graphql": "^0.10.1",
     "graphql-server-express": "^0.8.0",
     "graphql-tools": "^1.0.0",

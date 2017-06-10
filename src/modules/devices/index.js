@@ -1,33 +1,48 @@
-import express from 'express';
-const router = express.Router();
+import { Router } from 'express';
 
-import * as devices from './controller';
+import * as controllers from './controllers';
 
-router.post('/', (req, res) => {
-  const device = devices.createDevice(req.body);
-  res.status(201).json(device);
+const router = new Router();
+
+router.post('/', async (req, res) => {
+  controllers.createDevice(req.body)
+    .then((device) => res.status(201).json(device))
+    .catch((e) => res.status(400).json(e));
 });
 
 router.put('/:id', (req, res, next) => {
   const { id } = req.params;
   const { location } = req.body;
-  const device = devices.updatedDevice({ id: parseInt(id, 10), location });
-  if (!device) {
-    return next();
-  }
-  res.json(device);
+  controllers.updatedDevice({ id, location })
+    .then((device) => res.json(device))
+    .catch((e) => {
+      if (e.path === '_id'){
+        return next();
+      }
+      res.status(400).json(e);
+    });
 });
 
-router.get('/', (req, res) => {
-  res.status(200).json(devices.getDevices());
+router.get('/', async (req, res) => {
+  const limit = parseInt(req.query.limit, 0);
+  const skip = parseInt(req.query.skip, 0);
+  controllers.getDevices({ limit, skip })
+    .then((devices) => res.json(devices))
+    .catch((e) => {
+      console.error(e);
+      res.status(400).json(e);
+    });
 });
 
 router.get('/:id', (req, res, next) => {
-  const device = devices.getDevice(parseInt(req.params.id, 10));
-  if (!device) {
-    return next();
-  }
-  res.json(device);
+  controllers.getDevice(req.params.id)
+    .then((device) => res.json(device))
+    .catch((e) => {
+      if (e.path === '_id'){
+        return next();
+      }
+      res.status(400).json(e);
+    });
 });
 
 export default router;

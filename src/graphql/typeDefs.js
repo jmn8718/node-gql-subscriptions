@@ -1,6 +1,7 @@
 const typeDefs = `
   interface MetaSubscription {
     type: String!
+    updatedAt: String!
   }
 
   # The Location scalar type represents a geolocation point.
@@ -16,20 +17,17 @@ const typeDefs = `
     lng: Float!
   }
 
-  input BoxInput {
-    bottomLeftPoint: LocationInput,
-    topRightPoint: LocationInput,
-  }
-
   type Device {
     id: ID!
     name: String
     location: Location
+    updatedAt: String
   }
 
   type DeviceSubscription implements MetaSubscription{
     type: String!
     id: ID!
+    updatedAt: String!
     name: String
     currentLocation: Location
     previousLocation: Location
@@ -37,14 +35,12 @@ const typeDefs = `
 
   type Query {
     device(id: ID!): Device
-    devices: [Device]
-    devicesByLocation(location: LocationInput!, distance: Float): [Device]
-    devicesByBox(box: BoxInput): [Device]
+    devices(limit: Int skip: Int): [Device]
   }
 
   type Mutation {
     createDevice(name: String! location: LocationInput!): Device
-    updateDeviceLocation(id: ID!, location: LocationInput!): Device
+    updateDeviceLocation(id: ID! location: LocationInput!): Device
   }
 
   type Subscription {
