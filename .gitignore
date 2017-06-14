@@ -2,4 +2,6 @@ node_modules
 logs
 *.log
 dist
+build
 .env
+.env.prod

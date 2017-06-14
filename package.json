@@ -5,9 +5,12 @@
   "author": "Jose Miguel Navarro <jmn8718@gmail.com>",
   "scripts": {
     "start": "nodemon -w src --exec \"babel-node src/index.js\"",
-    "build": "babel src -s -D -d dist"
+    "preprod": "npm run build",
+    "prod": "node build/index.js",
+    "build": "babel src -s -D -d build"
   },
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "bluebird": "^3.5.0",
     "body-parser": "~1.17.1",
     "compression": "^1.6.2",

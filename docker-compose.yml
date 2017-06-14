@@ -22,8 +22,8 @@ services:
       - ./yarn.lock:/app/yarn.lock
       - /app/node_modules
     depends_on:
-      - mongo
       - redis
+      - mongo
     networks:
       - gql
 
