@@ -13,7 +13,7 @@ const websocketServer = createServer((request, response) => {
 
 // Bind it to port and start listening
 websocketServer.listen(WS_SERVER_PORT, () => console.log(
-  `Websocket Server is now running on http://localhost:${WS_SERVER_PORT}`
+  `Websocket Server is now running on port: ${WS_SERVER_PORT}`
 ));
 
 const subscriptionServer = SubscriptionServer.create({
