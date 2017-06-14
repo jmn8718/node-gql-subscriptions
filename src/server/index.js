@@ -7,11 +7,11 @@ import applyRoutes from './routes';
 
 import { schema } from '../graphql';
 
-const SERVER_PORT = parseInt(process.env.SERVER_PORT || '3000', 10);
-const WS_SERVER_PORT = parseInt(process.env.WS_SERVER_PORT || '3001', 10);
+const PORT = parseInt(process.env.PORT || '3000', 10);
+const WS_PORT = parseInt(process.env.WS_PORT || '3001', 10);
 const WS_SERVER_HOST = process.env.WS_SERVER_HOST || 'localhost';
 const app = express();
-app.set('port', SERVER_PORT);
+app.set('port', PORT);
 
 applyMiddlewares(app);
 
@@ -21,7 +21,7 @@ app.use('/graphql', graphqlExpress({
 
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}/subscriptions`,
+  subscriptionsEndpoint: `ws://${WS_SERVER_HOST}:${WS_PORT}/subscriptions`,
 }));
 
 applyRoutes(app);

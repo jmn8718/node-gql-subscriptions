@@ -3,7 +3,7 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { execute, subscribe } from 'graphql';
 import { schema } from '../graphql';
 
-const WS_SERVER_PORT = parseInt(process.env.WS_SERVER_PORT || '3001', 10);
+const WS_PORT = parseInt(process.env.WS_PORT || '3001', 10);
 
 // Create WebSocket listener server
 const websocketServer = createServer((request, response) => {
@@ -12,8 +12,8 @@ const websocketServer = createServer((request, response) => {
 });
 
 // Bind it to port and start listening
-websocketServer.listen(WS_SERVER_PORT, () => console.log(
-  `Websocket Server is now running on port: ${WS_SERVER_PORT}`
+websocketServer.listen(WS_PORT, () => console.log(
+  `Websocket Server is now running on port: ${WS_PORT}`
 ));
 
 const subscriptionServer = SubscriptionServer.create({

@@ -26,11 +26,11 @@ var _graphql = require('../graphql');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SERVER_PORT = parseInt(process.env.SERVER_PORT || '3000', 10);
-var WS_SERVER_PORT = parseInt(process.env.WS_SERVER_PORT || '3001', 10);
+var PORT = parseInt(process.env.PORT || '3000', 10);
+var WS_PORT = parseInt(process.env.WS_PORT || '3001', 10);
 var WS_SERVER_HOST = process.env.WS_SERVER_HOST || 'localhost';
 var app = (0, _express2.default)();
-app.set('port', SERVER_PORT);
+app.set('port', PORT);
 
 (0, _middlewares2.default)(app);
 
@@ -40,7 +40,7 @@ app.use('/graphql', (0, _graphqlServerExpress.graphqlExpress)({
 
 app.use('/graphiql', (0, _graphqlServerExpress.graphiqlExpress)({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: 'ws://' + WS_SERVER_HOST + ':' + WS_SERVER_PORT + '/subscriptions'
+  subscriptionsEndpoint: 'ws://' + WS_SERVER_HOST + ':' + WS_PORT + '/subscriptions'
 }));
 
 (0, _routes2.default)(app);
