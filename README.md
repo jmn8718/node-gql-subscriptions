@@ -12,8 +12,9 @@ The server also implements the Graphql subscriptions.
 - docker
 - docker-compose
 - mongodb (No need to have it running if you use docker-compose)
+- redis (No need to have it running if you use docker-compose)
 
-***note*** If you dont want to use docker, you can run it with the npm scripts, but you will have to run a mongodb instance and set the environment variables.
+***note*** If you dont want to use docker, you can run it with the npm scripts, but you will have to run a mongodb and redis instances and set the environment variables.
 
 ## Quickstart
 1. Clone the repo in you local machine
@@ -26,6 +27,10 @@ The server also implements the Graphql subscriptions.
 5. Now that the server is up, we can:
   - Go to [http://localhost:3000/graphiql](http://localhost:3000/graphiql) and you will see the *graphiql* interface
   - Call the API endpoints *ex.* [http://localhost:3000/api/v1/devices](http://localhost:3000/api/v1/devices)
+
+## Pubsub
+Graphql uses a pubsub system to publish and subscribe to subscriptions.
+I use redis and [graphql-redis-subscriptions](https://github.com/davidyaha/graphql-redis-subscriptions) package.
 
 ## Useful links
 - [Graphql operations of the server](docs/)

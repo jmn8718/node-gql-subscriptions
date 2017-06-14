@@ -10,7 +10,10 @@ services:
       - gql
   server:
     build: .
-    command: yarn start
+    entrypoint:
+      - yarn
+      - run
+      - dev
     ports:
       - '3000:3000'
       - '3001:3001'

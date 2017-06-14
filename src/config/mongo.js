@@ -3,13 +3,15 @@ import Promise from 'bluebird';
 
 mongoose.Promise = Promise;
 
-const { NODE_ENV, MONGO_HOST, MONGO_PORT, MONGO_COLLECTION, MONGO_USERNAME, MONGO_PASSWORD } = process.env;
+const { NODE_ENV, MONGO_HOST, MONGO_PORT, MONGO_DB, MONGO_USERNAME, MONGO_PASSWORD } = process.env;
 
-const uri = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_COLLECTION}`;
+const uri = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
 
 const options = NODE_ENV === 'development' ? {} : {
-  user: MONGO_USERNAME,
-  pass: MONGO_PASSWORD,
+  auth: {
+    user: MONGO_USERNAME,
+    password: MONGO_PASSWORD,
+  },
 };
 
 // Connect To Database
