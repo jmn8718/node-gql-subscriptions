@@ -8,8 +8,7 @@ import applyRoutes from './routes';
 import { schema } from '../graphql';
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
-const WS_PORT = parseInt(process.env.WS_PORT || '3001', 10);
-const WS_SERVER_HOST = process.env.WS_SERVER_HOST || 'localhost';
+
 const app = express();
 app.set('port', PORT);
 
@@ -19,9 +18,12 @@ app.use('/graphql', graphqlExpress({
   schema,
 }));
 
+const HOST = process.env.HOST || 'localhost';
+const WS_PROTOCOL = process.env.NODE_ENV === 'development' ? 'ws' : 'wss';
+
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://${WS_SERVER_HOST}:${WS_PORT}/subscriptions`,
+  subscriptionsEndpoint: `${WS_PROTOCOL}://${HOST}:${PORT}/subscriptions`,
 }));
 
 applyRoutes(app);
