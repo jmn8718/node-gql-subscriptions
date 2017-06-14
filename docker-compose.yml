@@ -1,8 +1,11 @@
 version: '3'
 services:
+  redis:
+    image: redis:3.2.9
+    networks:
+      - gql
   mongo:
     image: mongo:3.4.4
-
     networks:
       - gql
   server:
@@ -20,6 +23,7 @@ services:
       - /app/node_modules
     depends_on:
       - mongo
+      - redis
     networks:
       - gql
 

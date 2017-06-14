@@ -9,3 +9,5 @@ WORKDIR /app
 RUN yarn install
 
 COPY ./src /app/src
+
+ENTRYPOINT ["yarn", "start"]

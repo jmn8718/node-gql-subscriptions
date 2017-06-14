@@ -14,6 +14,7 @@
     "cookie-parser": "~1.4.3",
     "express": "~4.15.2",
     "graphql": "^0.10.1",
+    "graphql-redis-subscriptions": "^1.2.0",
     "graphql-server-express": "^0.8.0",
     "graphql-tools": "^1.0.0",
     "helmet": "^3.6.1",
