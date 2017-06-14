@@ -2,6 +2,7 @@
   "name": "node-gql-subscriptions",
   "description": "Graphql server with apollo server and subscriptions",
   "version": "0.0.1",
+  "license": "MIT",
   "author": "Jose Miguel Navarro <jmn8718@gmail.com>",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src/index.js\"",
