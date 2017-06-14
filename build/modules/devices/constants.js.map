@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/modules/devices/constants.js"],"names":["CREATE_DEVICE","UPDATE_DEVICE"],"mappings":";;;;;AAAO,IAAMA,wCAAgB,eAAtB;AACA,IAAMC,wCAAgB,eAAtB","file":"constants.js","sourcesContent":["export const CREATE_DEVICE = 'CREATE_DEVICE';\nexport const UPDATE_DEVICE = 'UPDATE_DEVICE';\n"]}
