@@ -6,7 +6,6 @@
   "author": "Jose Miguel Navarro <jmn8718@gmail.com>",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src/index.js\"",
-    "prestart": "npm run build",
     "start": "node build/index.js",
     "build": "babel src -s -D -d build"
   },
